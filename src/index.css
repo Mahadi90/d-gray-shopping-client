@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+div a.active {
+  background-color: black;
+  color: white;
+}

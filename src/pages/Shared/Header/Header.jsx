@@ -87,19 +87,18 @@ const Header = () => {
       </div>
       <div className="navbar-end">
         <button>
-          <FaSearch className="h-6 w-6 mx-2" />
+          <FaSearch className="h-6 w-6" />
         </button>
-        <button>
-          <FaShoppingCart className="h-6 w-6 mx-2" />
-        </button>
+        <Link to='/cart'> <FaShoppingCart className="h-6 w-6 mx-2" /></Link>
+       
         {
           user?   <>
         {
           user.photoURL ? <div className="tooltip tooltip-bottom" data-tip={`${user?.displayName}`}>
-            <img className="w-8 h-8  rounded-full" src={user?.photoURL} alt="photo" />
+            <img className="w-8 h-8 me-2 rounded-full" src={user?.photoURL} alt="photo" />
           </div>:
           <div className="tooltip tooltip-bottom" data-tip={`${user?.displayName}`}>
-            <FaUser className="h-6 w-6 mx-2" />
+            <FaUser className="h-6 w-6 me-2" />
           </div>
         }
         

@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ProductCard from "./ProductCard";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Shop = () => {
-
-
-
-
+const {loading} = useContext(AuthContext)
+if(loading){
+  return <div className='my-[15%] text-center'><span className="loading loading-bars loading-lg"></span></div>
+}
   const [products,setProducts] = useState([])
   useEffect(() => {
-      fetch('/products.json')
+      fetch('http://localhost:5000/products')
       .then(res => res.json())
-      .then(data => setProducts(data.products))
+      .then(data => setProducts(data))
   },[])
   
   const tshirtItems = products.filter(product => product.category === 'Tshirt');
@@ -35,7 +36,7 @@ const Shop = () => {
        <div className=" grid grid-cols-2 lg:grid-cols-3 gap-2 pb-6">
        {
             panjabiItems.map(item => <ProductCard
-            key={item.id}
+            key={item._id}
             item={item}
             ></ProductCard>)
           }
@@ -45,7 +46,7 @@ const Shop = () => {
         <div className=" grid grid-cols-2 lg:grid-cols-3 gap-2 pb-6">
        {
             tshirtItems.map(item => <ProductCard
-            key={item.id}
+            key={item._id}
             item={item}
             ></ProductCard>)
           }
@@ -55,7 +56,7 @@ const Shop = () => {
         <div className=" grid grid-cols-2 lg:grid-cols-3 gap-2 pb-6">
        {
             poloShirtItems.map(item => <ProductCard
-            key={item.id}
+            key={item._id}
             item={item}
             ></ProductCard>)
           }
@@ -65,7 +66,7 @@ const Shop = () => {
         <div className=" grid grid-cols-2 lg:grid-cols-3 gap-2 pb-6">
        {
             popularItems.map(item => <ProductCard
-            key={item.id}
+            key={item._id}
             item={item}
             ></ProductCard>)
           }

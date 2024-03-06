@@ -8,9 +8,9 @@ const Popular = () => {
 
 const [products,setProducts] = useState([])
 useEffect(() => {
-    fetch('/products.json')
+    fetch('http://localhost:5000/products')
     .then(res => res.json())
-    .then(data => setProducts(data.products))
+    .then(data => setProducts(data))
 },[])
 
 const popularItems = products.filter(product => product.title === 'Popular');
@@ -44,7 +44,7 @@ const popularItems = products.filter(product => product.title === 'Popular');
       >
         {
             popularItems.map(product =>  <SwiperSlide
-            className='mb-10' key={product.id}>
+            className='mb-10' key={product._id}>
                 <img className='h-[20vh] lg:h-[70vh] w-96' src={product.img} alt="" />
                 <div className='space-y-1 mt-2 p-2'>
                 <h3 className='text-gray-500 font-bold'>{product.category}</h3>

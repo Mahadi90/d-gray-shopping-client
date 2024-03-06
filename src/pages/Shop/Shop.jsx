@@ -6,10 +6,9 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const Shop = () => {
 const {loading} = useContext(AuthContext)
-if(loading){
-  return <div className='my-[15%] text-center'><span className="loading loading-bars loading-lg"></span></div>
-}
-  const [products,setProducts] = useState([])
+
+  const [products, setProducts] = useState([])
+
   useEffect(() => {
       fetch('http://localhost:5000/products')
       .then(res => res.json())

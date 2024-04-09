@@ -4,10 +4,12 @@ import { Link, NavLink } from "react-router-dom";
 import { FaUser, FaSearch, FaShoppingCart } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useCart from "../../../hooks/useCart";
 
 const Header = () => {
 
   const {user, logOut} = useContext(AuthContext)
+  const [cart] = useCart()
 
   const navItem = (
     <>
@@ -22,6 +24,9 @@ const Header = () => {
       </NavLink>
       <NavLink to="/contact" className="mx-2 font-bold px-4 py-2">
         <li>Contact Us</li>
+      </NavLink>
+      <NavLink to="/dashboard" className="mx-2 font-bold px-4 py-2">
+        <li>Dash Board</li>
       </NavLink>
     </>
   );
@@ -86,19 +91,22 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1">{navItem}</ul>
       </div>
       <div className="navbar-end">
+      <Link className="relative" to='/cart'> <FaShoppingCart className="h-6 w-6 me-2">
+          </FaShoppingCart>
+          <div className="badge badge-info text-white absolute -top-5 -left-4">{cart.length}</div>
+          </Link>
         <button>
-          <FaSearch className="h-6 w-6" />
+          <FaSearch className="h-6 w-6 mx-2" />
         </button>
-        <Link to='/cart'> <FaShoppingCart className="h-6 w-6 mx-2" /></Link>
        
         {
           user?   <>
         {
           user.photoURL ? <div className="tooltip tooltip-bottom" data-tip={`${user?.displayName}`}>
-            <img className="w-8 h-8 me-2 rounded-full" src={user?.photoURL} alt="photo" />
+            <img className="w-8 h-8 mx-2 rounded-full" src={user?.photoURL} alt="photo" />
           </div>:
           <div className="tooltip tooltip-bottom" data-tip={`${user?.displayName}`}>
-            <FaUser className="h-6 w-6 me-2" />
+            <FaUser className="h-6 w-6 mx-2" />
           </div>
         }
         

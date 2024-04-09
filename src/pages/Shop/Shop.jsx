@@ -10,7 +10,7 @@ const {loading} = useContext(AuthContext)
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-      fetch('http://localhost:5000/products')
+      fetch('https://d-gray-server-uzc1-kbxhuxkdq-mahadimhs787gmailcoms-projects.vercel.app/products')
       .then(res => res.json())
       .then(data => setProducts(data))
   },[])
